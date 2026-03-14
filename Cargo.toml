@@ -1,0 +1,19 @@
+[workspace]
+members = [
+  "crates/emu-core",
+  "crates/os-lab",
+  "crates/hypervisor-lab",
+  "crates/compiler-lab",
+  "crates/wasm-bindings",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+license = "MIT"
+version = "0.1.0"
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+wasm-bindgen = "=0.2.100"

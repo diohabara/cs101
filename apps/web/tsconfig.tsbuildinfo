@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/books.ts","./src/content.ts","./src/main.tsx","./src/quiz.ts","./src/vite-env.d.ts","./src/components/mermaidblock.tsx","./src/components/quizcard.tsx","./src/components/topicbadge.tsx","./src/generated/wasm/cs101_engine.d.ts","./src/generated/wasm/cs101_engine_bg.wasm.d.ts","./src/lib/types.ts","./src/lib/wasm.ts"],"version":"5.9.3"}

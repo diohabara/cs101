@@ -1,0 +1,13 @@
+{
+  "name": "cs101",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "build:wasm": "cargo build -p wasm-bindings --target wasm32-unknown-unknown --release && wasm-bindgen --target bundler --out-dir apps/web/src/generated/wasm --out-name cs101_engine target/wasm32-unknown-unknown/release/wasm_bindings.wasm",
+    "build:web": "npm --workspace apps/web run build",
+    "build": "npm run build:web",
+    "dev": "npm --workspace apps/web run dev"
+  }
+}

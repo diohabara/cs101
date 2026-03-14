@@ -1,0 +1,10 @@
+node_modules
+dist
+target
+build/
+.DS_Store
+*.log
+.playwright-cli
+v17/build
+*.bin
+

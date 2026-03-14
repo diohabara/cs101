@@ -1,0 +1,17 @@
+[package]
+name = "wasm-bindings"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+compiler-lab = { path = "../compiler-lab" }
+emu-core = { path = "../emu-core" }
+hypervisor-lab = { path = "../hypervisor-lab" }
+os-lab = { path = "../os-lab" }
+serde_json.workspace = true
+wasm-bindgen.workspace = true
+
