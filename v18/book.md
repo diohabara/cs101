@@ -125,10 +125,6 @@ qemu-system-x86_64 -kernel build/kernel.bin -serial stdio -display none
 # 出力: Hello, bare metal!
 ```
 
-## PlayStation との関連
-
-PS4/PS5 のカーネルも起動時に最初にシリアルデバッグ出力を有効化します。開発キットではシリアルコンソールでカーネルログを確認できます。ここで書いた UART ドライバと同じ原理です。
-
 ## 参考文献
 
 本章の技術的記述は以下の一次資料に基づいています。

@@ -133,10 +133,6 @@ Linux の追加機能:
 - メモリゾーン（DMA, Normal, HighMem）
 - per-CPU ページキャッシュ（pcplist）
 
-## PlayStation との関連
-
-PS4/PS5 のカーネルもバディアロケータを使ってメモリを管理しています。GPU メモリ（VRAM）は別系統のアロケータで管理されますが、CPU 用の物理メモリは Linux と同様のバディシステムで管理されます。
-
 ## 参考文献
 
 - [The Art of Linux Kernel Design, Ch.5](https://www.kernel.org/doc/gorman/html/understand/understand009.html) --- Linux のバディアロケータ

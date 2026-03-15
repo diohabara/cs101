@@ -165,10 +165,6 @@ naked 関数:
   sysretq             ← 手動で戻る
 ```
 
-## PlayStation との関連
-
-PS4/PS5 の Orbis OS カーネルも syscall/sysret を使ってユーザーモードのゲームプロセスとカーネルを切り替えます。ゲームが OS のサービス（メモリ確保、ファイル I/O、GPU コマンド送信）を利用するたびに syscall が呼ばれ、カーネルが処理を行って sysret で戻ります。v24 で構築した仕組みは、PS4/PS5 のシステムコールパスと本質的に同じ機構です。
-
 ## 参考文献
 
 - [AMD64 Architecture Programmer's Manual Vol.2 Ch.6 "System-Call Extension"](https://www.amd.com/en/search/documentation/hub.html) --- syscall/sysret 命令の仕様、MSR の設定

@@ -141,15 +141,6 @@ UART works after paging
 
 "UART works after paging" が出力されれば、ページング有効化後もアイデンティティマップにより全てのアドレスが正しく変換されていることが確認できます。
 
-## PlayStation との関連
-
-PS4/PS5 のカーネルも起動時に同様の手順でページテーブルを構築します:
-1. アイデンティティマップでカーネル空間を設定
-2. ユーザープロセスごとに独立したページテーブルを作成
-3. コンテキストスイッチ時に CR3 を切り替え
-
-PS5 の AMD カスタム APU は x86-64 互換なので、ここで学んだ 4 レベルページテーブルがそのまま使われます。
-
 ## 参考文献
 
 - [Intel SDM Vol.3 Ch.4 "Paging"](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html) --- x86-64 ページングの公式仕様

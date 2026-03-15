@@ -179,10 +179,6 @@ Timer started: 100Hz
 
 100Hz で 50 ティック = 500ms 後に "50 ticks reached" が出力されます。
 
-## PlayStation との関連
-
-PS4/PS5 のカーネルも起動初期にタイマー割り込みを設定します。HPET (High Precision Event Timer) や LAPIC タイマーを使いますが、原理は PIT と同じです。タイマー割り込みがスケジューラを駆動し、プロセス間の CPU 時間配分を実現します。
-
 ## 参考文献
 
 - [Intel 8259A PIC Datasheet](https://pdos.csail.mit.edu/6.828/2005/readings/hardware/8259A.pdf) --- PIC の ICW/OCW シーケンスとリマッピング
