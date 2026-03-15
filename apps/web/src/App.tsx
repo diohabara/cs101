@@ -3,8 +3,11 @@ import x86asm from "highlight.js/lib/languages/x86asm";
 import { common } from "lowlight";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import rehypeKatex from "rehype-katex";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import "katex/dist/katex.min.css";
 import { books } from "./books";
 import { MermaidBlock } from "./components/MermaidBlock";
 import { QuizCard } from "./components/QuizCard";
@@ -223,8 +226,8 @@ function App() {
 
         <article className="markdown-body">
           <ReactMarkdown
-            remarkPlugins={[remarkGfm, remarkBreaks]}
-            rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}
+            remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
+            rehypePlugins={[rehypeKatex, [rehypeHighlight, rehypeHighlightOptions]]}
             components={{
               h1: headingWithId("h1"),
               h2: headingWithId("h2"),

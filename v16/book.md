@@ -46,11 +46,11 @@ enqueue 5,6（wrap-around）:
 
 `tail % RING_SIZE` とすると、tail が配列サイズを超えても正しいインデックスに変換されます。
 
-```
-tail = 4 → 4 % 4 = 0  （slot0 に書き込む）
-tail = 5 → 5 % 4 = 1  （slot1 に書き込む）
-tail = 6 → 6 % 4 = 2  （slot2 に書き込む ← ここで head に追いつく = 満杯）
-```
+$$4 \bmod 4 = 0, \quad 5 \bmod 4 = 1, \quad 6 \bmod 4 = 2$$
+
+- $\text{tail} = 4 \to 0$（slot0 に書き込む）
+- $\text{tail} = 5 \to 1$（slot1 に書き込む）
+- $\text{tail} = 6 \to 2$（slot2 に書き込む。ここで head に追いつく = 満杯）
 
 head も同様に剰余で循環します。これにより、ポインタをリセットする必要がなく、単調増加させるだけで正しく動作します。
 
