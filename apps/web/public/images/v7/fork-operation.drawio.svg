@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 460 200" width="460" height="200"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- 親プロセス -->
+  <rect x="10" y="60" width="180" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="100" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">親プロセス</text>
+  <text x="100" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">(PID=100)</text>
+
+  <!-- fork arrow -->
+  <line x1="190" y1="85" x2="260" y2="85" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="225" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">fork()</text>
+
+  <!-- 子プロセス -->
+  <rect x="268" y="60" width="180" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="358" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">子プロセス</text>
+  <text x="358" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">(PID=101)</text>
+
+  <!-- 親の戻り値 -->
+  <rect x="10" y="140" width="180" height="40" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="100" y="165" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">rax = 101 (子の PID)</text>
+
+  <line x1="100" y1="110" x2="100" y2="140" stroke="#aaa" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <text x="85" y="130" text-anchor="end" font-family="sans-serif" font-size="10" fill="#888">戻り値</text>
+
+  <!-- 子の戻り値 -->
+  <rect x="268" y="140" width="180" height="40" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="358" y="165" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">rax = 0</text>
+
+  <line x1="358" y1="110" x2="358" y2="140" stroke="#aaa" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <text x="343" y="130" text-anchor="end" font-family="sans-serif" font-size="10" fill="#888">戻り値</text>
+</svg>

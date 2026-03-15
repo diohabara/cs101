@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 540 300" width="540" height="300"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- 高アドレス label -->
+  <text x="80" y="24" font-family="sans-serif" font-size="13" fill="#888">高アドレス（例: 0x7fffffffe018）</text>
+
+  <!-- Box 1: スタックの底 -->
+  <rect x="80" y="36" width="180" height="50" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="66" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333">（空き）</text>
+
+  <!-- Annotation 1 -->
+  <line x1="270" y1="61" x2="290" y2="61" stroke="#aaa" stroke-width="1"/>
+  <text x="296" y="65" font-family="sans-serif" font-size="11" fill="#888">スタックの底（プログラム開始時の rsp）</text>
+
+  <!-- Box 2: 値 A -->
+  <rect x="80" y="96" width="180" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="126" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">値 A</text>
+
+  <!-- Annotation 2 -->
+  <line x1="270" y1="121" x2="290" y2="121" stroke="#aaa" stroke-width="1"/>
+  <text x="296" y="125" font-family="sans-serif" font-size="11" fill="#888">最初に push された値（rsp -= 8）</text>
+
+  <!-- Box 3: 値 B -->
+  <rect x="80" y="156" width="180" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="186" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">値 B</text>
+
+  <!-- Annotation 3 -->
+  <line x1="270" y1="181" x2="290" y2="181" stroke="#aaa" stroke-width="1"/>
+  <text x="296" y="185" font-family="sans-serif" font-size="11" fill="#888">次に push された値（rsp はここを指す）</text>
+
+  <!-- 低アドレス label -->
+  <text x="80" y="240" font-family="sans-serif" font-size="13" fill="#888">低アドレス（例: 0x7fffffffe008）</text>
+
+  <!-- Arrow indicating growth direction -->
+  <line x1="50" y1="46" x2="50" y2="215" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="32" y="133" font-family="sans-serif" font-size="10" fill="#aaa"
+        writing-mode="tb" text-anchor="middle">push 方向</text>
+</svg>

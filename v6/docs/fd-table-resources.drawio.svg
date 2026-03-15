@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 560 220" width="560" height="220"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- プロセスの fd テーブル -->
+  <rect x="10" y="10" width="200" height="200" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="110" y="32" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">プロセスの fd テーブル</text>
+
+  <rect x="30" y="44" width="160" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="110" y="64" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">fd 0: stdin</text>
+
+  <rect x="30" y="82" width="160" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="110" y="102" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">fd 1: stdout</text>
+
+  <rect x="30" y="120" width="160" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="110" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">fd 2: stderr</text>
+
+  <rect x="30" y="158" width="160" height="30" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="110" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">fd 3: 開いたファイル</text>
+
+  <!-- カーネル -->
+  <rect x="320" y="10" width="220" height="200" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="430" y="32" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">カーネル</text>
+
+  <rect x="340" y="44" width="180" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="430" y="64" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">端末入力</text>
+
+  <rect x="340" y="82" width="180" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="430" y="102" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">端末出力</text>
+
+  <rect x="340" y="120" width="180" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="430" y="140" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">端末エラー</text>
+
+  <rect x="340" y="158" width="180" height="30" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="430" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">/tmp/v6_test.txt</text>
+
+  <!-- Arrows fd → kernel -->
+  <line x1="190" y1="59" x2="340" y2="59" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="190" y1="97" x2="340" y2="97" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="190" y1="135" x2="340" y2="135" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="190" y1="173" x2="340" y2="173" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+</svg>

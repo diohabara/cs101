@@ -10,13 +10,18 @@
 プログラムが使うアドレスは「仮想アドレス (virtual address)」です。
 CPU がメモリにアクセスするとき、カーネルと MMU (Memory Management Unit) が仮想アドレスを物理アドレスに変換します。
 
-```mermaid
-flowchart LR
-    CPU["CPU が出すアドレス<br/>(仮想アドレス)"]
-    MMU["MMU<br/>+ ページテーブル"]
-    PHYS["物理メモリ"]
-    CPU --> MMU --> PHYS
-```
+![仮想アドレス→MMU→物理メモリの翻訳](/images/v8/virtual-memory-translation.drawio.svg)
+
+### MMU とは
+
+**MMU（Memory Management Unit）** は CPU の中に組み込まれたハードウェアです。CPU がメモリアクセスを行うたびに、MMU が仮想アドレスを物理アドレスに変換します。この変換はソフトウェアではなく **ハードウェアが行う** ため、毎回の命令実行で遅延がほとんどありません。
+
+MMU は **ページテーブル** という対応表を参照して変換を行います。ページテーブルの中身を作成・更新するのはカーネルの仕事ですが、実際の変換処理は MMU が高速に実行します。つまり役割分担は以下の通りです：
+
+- **カーネル** — ページテーブルを作成・管理する（「仮想アドレス X → 物理アドレス Y」の対応を決める）
+- **MMU** — ページテーブルを参照して、CPU が出す仮想アドレスを物理アドレスに変換する
+
+もし MMU が対応するエントリを見つけられない場合（マッピングがない、または権限がない）、**ページフォルト例外** が発生し、カーネルに制御が移ります。[v8 — SIGSEGV](#v8/sigsegv) で扱う `mprotect` + アクセス違反はまさにこのケースです。
 
 プログラムから見えるアドレス空間は、物理メモリのレイアウトとは無関係です。
 カーネルが「仮想アドレス X → 物理アドレス Y」の対応表（ページテーブル）を管理しています。
@@ -80,6 +85,30 @@ x86-64 では通常 **4096 バイト (4 KiB)** です。
 
 この章で直接扱うのは `mmap` です。つまり「アロケータの一段下」で、仮想アドレス空間にページをどう生やすかを見る段階だと考えると位置づけが分かりやすくなります。
 
+### mmap_write — ページの確保と読み書き
+
+`mmap` でページを確保し、値を書き込んで読み出す最小の例です。
+
+| ステップ | 操作                         | 状態                                 |
+|----------|------------------------------|--------------------------------------|
+| 1        | mmap(PROT_READ\|PROT_WRITE)  | ページ確保、rax = アドレス           |
+| 2        | mov qword [rax], 42          | ページに 42 を書き込み               |
+| 3        | mov rbx, [rax]               | ページから 42 を読み出し             |
+| 4        | exit(42)                     | 終了コード 42                        |
+
+{{code:asm/mmap_write.asm}}
+
+### GDB の `info proc mappings`
+
+GDB で `info proc mappings` を実行すると、プロセスのメモリマッピングを一覧表示できます。
+`mmap` で確保したページがどのアドレスに配置されたか、権限はどうなっているかを確認できます。
+
+```
+(gdb) info proc mappings
+  Start Addr           End Addr       Size     Offset  Perms  objfile
+  0x7ffff7ff0000     0x7ffff7ff1000     0x1000  0x0     rw-p   [anon]
+```
+
 ## mprotect システムコール
 
 確保済みページのアクセス権を変更するシステムコールです。
@@ -93,66 +122,17 @@ x86-64 では通常 **4096 バイト (4 KiB)** です。
 
 権限を `PROT_NONE` に変更すると、そのページへのすべてのアクセスが禁止されます。
 
-## SIGSEGV
+### SIGSEGV
 
 権限のないメモリにアクセスしたとき、CPU が例外を発生させ、カーネルがプロセスに **SIGSEGV (signal 11)** を送ります。
-これは v7 で学んだシグナルの一種です。
+これは [v7 — シグナルの概念](#v7/シグナルの概念（プレビュー）) で学んだシグナルの一種です。
 デフォルトの動作はプロセスの強制終了で、終了コードは **139 (= 128 + 11)** になります。
 
-```mermaid
-sequenceDiagram
-    participant P as プロセス
-    participant K as カーネル
-    participant M as MMU
+![SIGSEGV 発生のシーケンス図](/images/v8/sigsegv-sequence.drawio.svg)
 
-    P->>M: mov rbx, [r12] (PROT_NONE のページ)
-    M->>K: ページフォルト例外
-    K->>P: SIGSEGV (signal 11)
-    Note over P: 終了コード 139
-```
+### mprotect_crash — 権限剥奪と SIGSEGV
 
-## 独立したマッピング
-
-`mmap` を複数回呼ぶと、それぞれ独立したメモリ領域が確保されます。
-一方のページに書き込んでも、他方のページには影響しません。
-
-```mermaid
-flowchart TD
-    subgraph 仮想アドレス空間
-        P1["page1 (r12)"]
-        P2["page2 (r13)"]
-    end
-    subgraph 物理メモリ
-        F1["フレーム A"]
-        F2["フレーム B"]
-    end
-    P1 --> F1
-    P2 --> F2
-```
-
-## GDB の `info proc mappings`
-
-GDB で `info proc mappings` を実行すると、プロセスのメモリマッピングを一覧表示できます。
-`mmap` で確保したページがどのアドレスに配置されたか、権限はどうなっているかを確認できます。
-
-```
-(gdb) info proc mappings
-  Start Addr           End Addr       Size     Offset  Perms  objfile
-  0x7ffff7ff0000     0x7ffff7ff1000     0x1000  0x0     rw-p   [anon]
-```
-
-## 状態遷移
-
-### mmap_write
-
-| ステップ | 操作                         | 状態                                 |
-|----------|------------------------------|--------------------------------------|
-| 1        | mmap(PROT_READ\|PROT_WRITE)  | ページ確保、rax = アドレス           |
-| 2        | mov qword [rax], 42          | ページに 42 を書き込み               |
-| 3        | mov rbx, [rax]               | ページから 42 を読み出し             |
-| 4        | exit(42)                     | 終了コード 42                        |
-
-### mprotect_crash
+`mmap` でページを確保し、書き込みに成功した後、`mprotect` でアクセス権を剥奪します。再度アクセスすると SIGSEGV が発生します。
 
 | ステップ | 操作                         | 状態                                 |
 |----------|------------------------------|--------------------------------------|
@@ -161,7 +141,16 @@ GDB で `info proc mappings` を実行すると、プロセスのメモリマッ
 | 3        | mprotect(PROT_NONE)          | アクセス権を剥奪                     |
 | 4        | mov rbx, [r12]               | SIGSEGV → 終了コード 139             |
 
-### two_mappings
+{{code:asm/mprotect_crash.asm}}
+
+## 独立したマッピング
+
+`mmap` を複数回呼ぶと、それぞれ独立したメモリ領域が確保されます。
+一方のページに書き込んでも、他方のページには影響しません。
+
+![仮想ページ→物理フレームのマッピング](/images/v8/page-frame-mapping.drawio.svg)
+
+### two_mappings — 2 つのページの独立性
 
 | ステップ | 操作                         | 状態                                 |
 |----------|------------------------------|--------------------------------------|
@@ -170,12 +159,6 @@ GDB で `info proc mappings` を実行すると、プロセスのメモリマッ
 | 3        | mov qword [r12], 11          | page1 = 11                           |
 | 4        | mov qword [r13], 22          | page2 = 22（page1 に影響しない）     |
 | 5        | exit([r12])                  | 終了コード 11                        |
-
-## ソースコード
-
-{{code:asm/mmap_write.asm}}
-
-{{code:asm/mprotect_crash.asm}}
 
 {{code:asm/two_mappings.asm}}
 

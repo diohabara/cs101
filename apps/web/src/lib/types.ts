@@ -31,6 +31,13 @@ export interface KeyValue {
   value: string;
 }
 
+export interface InstructionState {
+  line: number;
+  rip_before: string;
+  rip_after: string;
+  source: string;
+}
+
 export interface TraceEvent {
   id: string;
   label: string;
@@ -40,6 +47,21 @@ export interface TraceEvent {
   memory: string[];
   types: string[];
   heap: string[];
+  instruction?: InstructionState;
+  register_diff?: KeyValue[];
+  memory_diff?: KeyValue[];
+  stack_snapshot?: KeyValue[];
+  branch_id?: string;
+}
+
+export interface TraceBranch {
+  id: string;
+  label: string;
+  summary: string;
+  stdout: string[];
+  stderr: string[];
+  initial_registers?: KeyValue[];
+  timeline: TraceEvent[];
 }
 
 export interface TraceResult {
@@ -47,4 +69,8 @@ export interface TraceResult {
   diagnostics: string[];
   observations: string[];
   timeline: TraceEvent[];
+  relevant_registers?: string[];
+  uses_stdin?: boolean;
+  active_branch?: string;
+  branches?: TraceBranch[];
 }

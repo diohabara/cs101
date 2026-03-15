@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 300 200" width="300" height="200"
+     style="background: transparent;">
+
+  <!-- プロセス outer box -->
+  <rect x="10" y="10" width="280" height="180" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="150" y="32" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">プロセス</text>
+
+  <!-- PID -->
+  <rect x="30" y="46" width="110" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="85" y="76" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">PID: 1234</text>
+
+  <!-- メモリ空間 -->
+  <rect x="160" y="46" width="110" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="215" y="76" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">メモリ空間</text>
+
+  <!-- fd テーブル -->
+  <rect x="30" y="108" width="110" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="85" y="138" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">fd テーブル</text>
+
+  <!-- レジスタ状態 -->
+  <rect x="160" y="108" width="110" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="215" y="138" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">レジスタ状態</text>
+
+  <!-- Footer note -->
+  <text x="150" y="182" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">各プロセスが独立して持つ構成要素</text>
+</svg>

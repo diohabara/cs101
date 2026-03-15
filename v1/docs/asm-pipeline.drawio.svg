@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 660 80" width="660" height="80"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- hello.asm -->
+  <rect x="10" y="15" width="110" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="65" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">hello.asm</text>
+  <text x="65" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">ソース</text>
+
+  <!-- Arrow -->
+  <line x1="120" y1="40" x2="140" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- nasm -->
+  <rect x="148" y="15" width="100" height="50" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="198" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">nasm</text>
+  <text x="198" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">アセンブラ</text>
+
+  <!-- Arrow -->
+  <line x1="248" y1="40" x2="268" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- hello.o -->
+  <rect x="276" y="15" width="110" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="331" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">hello.o</text>
+  <text x="331" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">オブジェクト</text>
+
+  <!-- Arrow -->
+  <line x1="386" y1="40" x2="406" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- ld -->
+  <rect x="414" y="15" width="100" height="50" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="464" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">ld</text>
+  <text x="464" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">リンカ</text>
+
+  <!-- Arrow -->
+  <line x1="514" y1="40" x2="534" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- hello -->
+  <rect x="542" y="15" width="110" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="597" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">hello</text>
+  <text x="597" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">実行可能ファイル</text>
+</svg>

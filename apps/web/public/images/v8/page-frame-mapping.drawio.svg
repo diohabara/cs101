@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 460 180" width="460" height="180"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- 仮想アドレス空間 -->
+  <rect x="10" y="10" width="180" height="160" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="100" y="32" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">仮想アドレス空間</text>
+
+  <!-- page1 -->
+  <rect x="30" y="48" width="140" height="40" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="100" y="73" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">page1 (r12)</text>
+
+  <!-- page2 -->
+  <rect x="30" y="100" width="140" height="40" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="100" y="125" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">page2 (r13)</text>
+
+  <!-- 物理メモリ -->
+  <rect x="270" y="10" width="180" height="160" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="360" y="32" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">物理メモリ</text>
+
+  <!-- フレーム A -->
+  <rect x="290" y="48" width="140" height="40" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="360" y="73" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">フレーム A</text>
+
+  <!-- フレーム B -->
+  <rect x="290" y="100" width="140" height="40" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="360" y="125" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">フレーム B</text>
+
+  <!-- Arrows -->
+  <line x1="170" y1="68" x2="290" y2="68" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="170" y1="120" x2="290" y2="120" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+</svg>

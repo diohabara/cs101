@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 520 210" width="520" height="210"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Register File -->
+  <rect x="20" y="10" width="160" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="100" y="40" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">Register File</text>
+
+  <!-- Memory Cell -->
+  <rect x="300" y="10" width="160" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="380" y="40" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">Memory Cell</text>
+
+  <!-- store arrow (R→M, upper) -->
+  <line x1="180" y1="25" x2="300" y2="25" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="240" y="18" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">store</text>
+
+  <!-- load arrow (M→R, lower) -->
+  <line x1="300" y1="45" x2="180" y2="45" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="240" y="62" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">load</text>
+
+  <!-- Program Counter -->
+  <rect x="20" y="140" width="160" height="50" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="100" y="170" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333">Program Counter</text>
+
+  <!-- Instruction -->
+  <rect x="300" y="140" width="160" height="50" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="380" y="170" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333">Instruction</text>
+
+  <!-- PC → Instruction: フェッチ -->
+  <line x1="180" y1="165" x2="300" y2="165" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="240" y="158" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">フェッチ</text>
+
+  <!-- Instruction → Register File: レジスタを操作 -->
+  <line x1="335" y1="140" x2="145" y2="60" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="220" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">レジスタを操作</text>
+
+  <!-- Instruction → Memory Cell: メモリを操作 -->
+  <line x1="425" y1="140" x2="425" y2="60" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="490" y="105" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">メモリを</text>
+  <text x="490" y="119" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">操作</text>
+</svg>

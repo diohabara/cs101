@@ -1,9 +1,9 @@
 ; write_stderr.asm — stderr にメッセージを出力する
-; fd=1 (stdout) と fd=2 (stderr) の違いを体験する。
-; exit code 1 で終了。
+; rdi=2 にすることで stdout ではなく stderr に書き込む。
+; fd の違いは v6 で詳しく学ぶ。exit code 1 で終了。
 
 section .data
-    errmsg: db "Error: something went wrong", 10
+    errmsg: db "This message goes to stderr (fd=2)", 10
     errlen: equ $ - errmsg
 
 section .text

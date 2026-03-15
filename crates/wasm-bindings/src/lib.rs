@@ -1,5 +1,5 @@
 use compiler_lab::compiler_trace;
-use emu_core::{cpu_trace, riscv_trace};
+use emu_core::{cpu_trace, riscv_trace, x86_trace};
 use hypervisor_lab::virtualization_trace;
 use os_lab::os_trace;
 use wasm_bindgen::prelude::*;
@@ -19,5 +19,11 @@ pub fn run_scenario(scenario: &str, source: &str) -> Result<String, JsError> {
         }
     };
 
+    serde_json::to_string(&trace).map_err(|error| JsError::new(&error.to_string()))
+}
+
+#[wasm_bindgen]
+pub fn run_x86_trace(stage_id: &str, source: &str, stdin: &str) -> Result<String, JsError> {
+    let trace = x86_trace(stage_id, source, stdin).map_err(|error| JsError::new(&error))?;
     serde_json::to_string(&trace).map_err(|error| JsError::new(&error.to_string()))
 }

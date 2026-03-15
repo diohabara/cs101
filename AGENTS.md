@@ -68,8 +68,9 @@ just docker-build       # コンテナイメージの明示ビルド
 ### ファイル規約
 
 - 各 `vN/` は独立したアセンブリプロジェクト。Makefile で asm/*.asm を自動検出する
-- `book.md` は Markdown + Mermaid で書く。Web ビューアがレンダリングする
-- `hello.asm -> nasm -> hello.o -> ld -> hello` のような、対応関係や変換パイプラインを矢印で示す図は、ASCII 図ではなく `beautiful-mermaid` で見やすい Mermaid 図として書く
+- `book.md` は Markdown で書く。Web ビューアがレンダリングする
+- Markdown 内の図は `.drawio.svg` 形式で作成し、`apps/web/public/images/vN/` に配置して `![alt](/images/vN/name.drawio.svg)` で参照する。ソースは `vN/docs/` にも残す。Mermaid は使用しない
+- パフォーマンス計測結果などのグラフ・チャートは Python + plotly で可視化し、PNG 形式で出力して画像リンクとして埋め込む
 - `book.md` を学習者向け本文の正本とし、`docs/` 配下は `delta.md` などの補助メタデータを置く
 
 ### 禁止事項

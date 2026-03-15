@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 360 340" width="360" height="340"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- INIT: mov rcx, 5 -->
+  <rect x="80" y="10" width="180" height="40" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="35" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">mov rcx, 5</text>
+
+  <!-- Arrow down -->
+  <line x1="170" y1="50" x2="170" y2="70" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- LOOP_TOP: sub rcx, 1 -->
+  <rect x="80" y="78" width="180" height="40" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">sub rcx, 1</text>
+
+  <!-- Arrow down -->
+  <line x1="170" y1="118" x2="170" y2="138" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- CMP: cmp rcx, 0 -->
+  <rect x="80" y="146" width="180" height="40" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="171" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">cmp rcx, 0</text>
+
+  <!-- Arrow down -->
+  <line x1="170" y1="186" x2="170" y2="206" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Diamond: ZF=0? -->
+  <polygon points="170,214 240,244 170,274 100,244" fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="248" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">ZF=0?</text>
+
+  <!-- Yes arrow (left, back up to sub) -->
+  <line x1="100" y1="244" x2="50" y2="244" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="50" y1="244" x2="50" y2="98" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="50" y1="98" x2="80" y2="98" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="42" y="175" font-family="sans-serif" font-size="11" fill="#888" text-anchor="end">Yes: jnz</text>
+
+  <!-- No arrow (down to exit) -->
+  <line x1="170" y1="274" x2="170" y2="294" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- EXIT -->
+  <rect x="80" y="302" width="180" height="30" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="322" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">mov rdi, rcx / mov rax, 60 / syscall</text>
+
+  <text x="190" y="290" font-family="sans-serif" font-size="11" fill="#888">No: fall through</text>
+</svg>

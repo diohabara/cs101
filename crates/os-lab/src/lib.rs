@@ -81,6 +81,10 @@ pub fn os_trace(source: &str) -> TraceResult {
             ),
             end_event,
         ],
+        relevant_registers: Vec::new(),
+        uses_stdin: false,
+        active_branch: None,
+        branches: None,
     }
 }
 

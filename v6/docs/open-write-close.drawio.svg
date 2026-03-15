@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 480 340" width="480" height="340"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Participant headers -->
+  <rect x="20" y="10" width="100" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="70" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">プロセス</text>
+
+  <rect x="190" y="10" width="100" height="30" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="240" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">カーネル</text>
+
+  <rect x="360" y="10" width="100" height="30" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="410" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">ファイル</text>
+
+  <!-- Lifelines -->
+  <line x1="70" y1="40" x2="70" y2="330" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="240" y1="40" x2="240" y2="330" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="410" y1="40" x2="410" y2="330" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- sys_open -->
+  <line x1="70" y1="70" x2="240" y2="70" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="155" y="63" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">sys_open("/tmp/test.txt", flags, mode)</text>
+
+  <line x1="240" y1="95" x2="410" y2="95" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="325" y="88" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">ファイル作成/オープン</text>
+
+  <line x1="240" y1="120" x2="70" y2="120" stroke="#aaa" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead)"/>
+  <text x="155" y="113" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">fd = 3</text>
+
+  <!-- sys_write -->
+  <line x1="70" y1="160" x2="240" y2="160" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="155" y="153" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">sys_write(3, buf, len)</text>
+
+  <line x1="240" y1="185" x2="410" y2="185" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="325" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">データ書き込み</text>
+
+  <line x1="240" y1="210" x2="70" y2="210" stroke="#aaa" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead)"/>
+  <text x="155" y="203" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">書き込みバイト数</text>
+
+  <!-- sys_close -->
+  <line x1="70" y1="250" x2="240" y2="250" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="155" y="243" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">sys_close(3)</text>
+
+  <line x1="240" y1="275" x2="410" y2="275" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="325" y="268" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">ファイルクローズ</text>
+
+  <line x1="240" y1="300" x2="70" y2="300" stroke="#aaa" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead)"/>
+  <text x="155" y="293" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">0 (成功)</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 80" width="600" height="80"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+    <marker id="arrowhead-dashed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ccc"/>
+    </marker>
+  </defs>
+
+  <!-- cmp rax, 42 -->
+  <rect x="10" y="15" width="140" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="80" y="45" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">cmp rax, 42</text>
+
+  <!-- Arrow -->
+  <line x1="150" y1="40" x2="170" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- rax - 42 を計算 -->
+  <rect x="178" y="15" width="150" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="253" y="45" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">rax - 42 を計算</text>
+
+  <!-- Arrow to flags -->
+  <line x1="328" y1="30" x2="380" y2="30" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- ZF, SF, CF, OF を更新 -->
+  <rect x="388" y="5" width="200" height="40" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="488" y="30" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">ZF, SF, CF, OF を更新</text>
+
+  <!-- Dashed arrow to discard -->
+  <line x1="328" y1="50" x2="380" y2="50" stroke="#ccc" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead-dashed)"/>
+
+  <!-- rax は変わらない -->
+  <rect x="388" y="35" width="200" height="40" rx="4" ry="4"
+        fill="#f0f4f8" stroke="#ccc" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="488" y="52" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">結果は捨てる</text>
+  <text x="488" y="67" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">rax は変わらない</text>
+</svg>

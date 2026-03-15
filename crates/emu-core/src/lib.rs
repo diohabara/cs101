@@ -1,10 +1,20 @@
 use serde::Serialize;
 use std::collections::BTreeMap;
 
+mod x86;
+
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
 pub struct KeyValue {
     pub key: String,
     pub value: String,
+}
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct InstructionState {
+    pub line: usize,
+    pub rip_before: String,
+    pub rip_after: String,
+    pub source: String,
 }
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
@@ -17,6 +27,28 @@ pub struct TraceEvent {
     pub memory: Vec<String>,
     pub types: Vec<String>,
     pub heap: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instruction: Option<InstructionState>,
+    #[serde(skip_serializing_if = "Vec::is_empty", default)]
+    pub register_diff: Vec<KeyValue>,
+    #[serde(skip_serializing_if = "Vec::is_empty", default)]
+    pub memory_diff: Vec<KeyValue>,
+    #[serde(skip_serializing_if = "Vec::is_empty", default)]
+    pub stack_snapshot: Vec<KeyValue>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub branch_id: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct TraceBranch {
+    pub id: String,
+    pub label: String,
+    pub summary: String,
+    pub stdout: Vec<String>,
+    pub stderr: Vec<String>,
+    #[serde(skip_serializing_if = "Vec::is_empty", default)]
+    pub initial_registers: Vec<KeyValue>,
+    pub timeline: Vec<TraceEvent>,
 }
 
 #[derive(Debug, Clone, Serialize, PartialEq, Eq)]
@@ -25,6 +57,14 @@ pub struct TraceResult {
     pub diagnostics: Vec<String>,
     pub observations: Vec<String>,
     pub timeline: Vec<TraceEvent>,
+    #[serde(skip_serializing_if = "Vec::is_empty", default)]
+    pub relevant_registers: Vec<String>,
+    #[serde(default)]
+    pub uses_stdin: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub active_branch: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub branches: Option<Vec<TraceBranch>>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -66,7 +106,16 @@ pub fn event(
         memory: memory.into_iter().map(str::to_string).collect(),
         types: types.into_iter().map(str::to_string).collect(),
         heap: heap.into_iter().map(str::to_string).collect(),
+        instruction: None,
+        register_diff: Vec::new(),
+        memory_diff: Vec::new(),
+        stack_snapshot: Vec::new(),
+        branch_id: None,
     }
+}
+
+pub fn x86_trace(stage_id: &str, source: &str, stdin: &str) -> Result<TraceResult, String> {
+    x86::x86_trace(stage_id, source, stdin)
 }
 
 pub fn riscv_trace(source: &str) -> Result<TraceResult, String> {
@@ -147,6 +196,11 @@ pub fn riscv_trace(source: &str) -> Result<TraceResult, String> {
                 "runtime heap = not used".to_string(),
                 "side effects = register file only".to_string(),
             ],
+            instruction: None,
+            register_diff: Vec::new(),
+            memory_diff: Vec::new(),
+            stack_snapshot: Vec::new(),
+            branch_id: None,
         });
     }
 
@@ -168,6 +222,10 @@ pub fn riscv_trace(source: &str) -> Result<TraceResult, String> {
             "この章ではメモリアクセスや例外を外し、レジスタ更新だけに集中している。".to_string(),
         ],
         timeline,
+        relevant_registers: Vec::new(),
+        uses_stdin: false,
+        active_branch: None,
+        branches: None,
     })
 }
 
@@ -394,6 +452,10 @@ pub fn cpu_trace(source: &str) -> TraceResult {
                 vec!["kernel frame released"],
             ),
         ],
+        relevant_registers: Vec::new(),
+        uses_stdin: false,
+        active_branch: None,
+        branches: None,
     }
 }
 

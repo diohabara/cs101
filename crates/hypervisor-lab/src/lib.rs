@@ -96,6 +96,10 @@ pub fn virtualization_trace(source: &str) -> TraceResult {
                 vec!["host stack released"],
             ),
         ],
+        relevant_registers: Vec::new(),
+        uses_stdin: false,
+        active_branch: None,
+        branches: None,
     }
 }
 

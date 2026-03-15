@@ -22,38 +22,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "cs101-v1"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v2"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v3"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v4"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v5"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v6"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v7"
-version = "0.1.0"
-
-[[package]]
-name = "cs101-v8"
-version = "0.1.0"
-
-[[package]]
 name = "emu-core"
 version = "0.1.0"
 dependencies = [

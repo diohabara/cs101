@@ -136,6 +136,10 @@ pub fn compiler_trace(source: &str) -> TraceResult {
             type_event,
             gc_event,
         ],
+        relevant_registers: Vec::new(),
+        uses_stdin: false,
+        active_branch: None,
+        branches: None,
     }
 }
 
