@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 180" width="600" height="180"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Bump Allocator label -->
+  <text x="15" y="18" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Bump Allocator</text>
+
+  <!-- Bump: allocated blocks -->
+  <rect x="15" y="28" width="80" height="40" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="55" y="52" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">A</text>
+
+  <rect x="95" y="28" width="80" height="40" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="135" y="52" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">B</text>
+
+  <rect x="175" y="28" width="80" height="40" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="215" y="52" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">C</text>
+
+  <!-- Bump: free region -->
+  <rect x="255" y="28" width="100" height="40" rx="3" ry="3"
+        fill="none" stroke="#5a6a7a" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="305" y="52" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">free</text>
+
+  <!-- Bump pointer arrow -->
+  <line x1="255" y1="78" x2="255" y2="68" stroke="#aaa" stroke-width="1.5"/>
+  <text x="255" y="88" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">ptr</text>
+  <line x1="260" y1="82" x2="290" y2="82" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Free-list Allocator label -->
+  <text x="15" y="118" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Free-list Allocator</text>
+
+  <!-- Free-list: header + data blocks -->
+  <rect x="15" y="128" width="40" height="40" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="35" y="148" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">HDR</text>
+  <text x="35" y="160" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">32</text>
+
+  <rect x="55" y="128" width="90" height="40" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="100" y="152" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">DATA (A)</text>
+
+  <rect x="145" y="128" width="40" height="40" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="165" y="148" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">HDR</text>
+  <text x="165" y="160" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">64</text>
+
+  <rect x="185" y="128" width="90" height="40" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="230" y="152" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">DATA (B)</text>
+
+  <!-- Free block with next pointer -->
+  <rect x="275" y="128" width="80" height="40" rx="3" ry="3"
+        fill="none" stroke="#5a6a7a" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="315" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">FREE</text>
+  <text x="315" y="160" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">next</text>
+  <line x1="355" y1="148" x2="385" y2="148" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Description labels -->
+  <text x="395" y="52" text-anchor="start" font-family="sans-serif" font-size="10" fill="#888">ポインタを進めるだけ</text>
+  <text x="395" y="66" text-anchor="start" font-family="sans-serif" font-size="10" fill="#888">個別 free 不可</text>
+  <text x="395" y="145" text-anchor="start" font-family="sans-serif" font-size="10" fill="#888">ヘッダでサイズ管理</text>
+  <text x="395" y="159" text-anchor="start" font-family="sans-serif" font-size="10" fill="#888">空きブロックをリスト接続</text>
+</svg>

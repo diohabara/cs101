@@ -34,6 +34,8 @@ store 1 → counter
 スレッド A の store がスレッド B の load より先に完了すれば問題ありませんが、
 タイミングによっては上のように「更新が失われる（lost update）」が発生します。
 
+![データ競合: 2 スレッドが同時に読み書きして更新が失われる](/images/v14/data-race.drawio.svg)
+
 ## spinlock — __atomic ビルトインによる自作ロック
 
 spinlock は最もシンプルなロック機構です。

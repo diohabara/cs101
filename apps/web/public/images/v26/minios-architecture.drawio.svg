@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 500 350" width="500" height="350"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Outer frame -->
+  <rect x="10" y="10" width="480" height="330" rx="6" ry="6"
+        fill="none" stroke="#5a6a7a" stroke-width="1.5"/>
+
+  <!-- User Tasks (Ring 3) -->
+  <rect x="30" y="30" width="440" height="70" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="250" y="48" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">User Tasks (Ring 3)</text>
+  <rect x="60" y="58" width="100" height="30" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="110" y="78" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">Task A</text>
+  <rect x="200" y="58" width="100" height="30" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="250" y="78" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">Task B</text>
+
+  <!-- syscall boundary line -->
+  <line x1="10" y1="110" x2="490" y2="110" stroke="#5a6a7a" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="460" y="124" text-anchor="end" font-family="sans-serif" font-size="9" fill="#888">syscall</text>
+
+  <!-- Arrows from tasks -->
+  <line x1="110" y1="88" x2="110" y2="148" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <line x1="250" y1="88" x2="250" y2="148" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+  <!-- Kernel components -->
+  <rect x="30" y="130" width="440" height="120" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="250" y="260" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">Kernel (Ring 0)</text>
+
+  <!-- Scheduler -->
+  <rect x="50" y="155" width="120" height="55" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="110" y="175" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333" font-weight="bold">Scheduler</text>
+  <text x="110" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">(Round Robin)</text>
+
+  <!-- Memory -->
+  <rect x="190" y="155" width="120" height="55" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="250" y="175" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333" font-weight="bold">Memory</text>
+  <text x="250" y="190" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">(Buddy+Paging)</text>
+
+  <!-- DMA -->
+  <rect x="330" y="155" width="120" height="55" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="390" y="180" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333" font-weight="bold">DMA Engine</text>
+
+  <!-- Hardware Abstraction -->
+  <rect x="30" y="275" width="440" height="55" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="250" y="295" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333" font-weight="bold">GDT | IDT | Timer | UART | PMM | Paging</text>
+  <text x="250" y="315" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">Hardware Abstraction</text>
+</svg>

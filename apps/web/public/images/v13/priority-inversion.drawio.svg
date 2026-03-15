@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 200" width="600" height="200"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="300" y="18" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Priority Inversion (WITHOUT inheritance)</text>
+
+  <!-- Time axis -->
+  <line x1="100" y1="170" x2="570" y2="170" stroke="#5a6a7a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="580" y="174" font-family="sans-serif" font-size="10" fill="#888">tick</text>
+
+  <!-- Tick labels -->
+  <text x="120" y="185" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">0</text>
+  <text x="195" y="185" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">1</text>
+  <text x="270" y="185" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">2</text>
+  <text x="345" y="185" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">3</text>
+  <text x="420" y="185" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">4</text>
+  <text x="495" y="185" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">5</text>
+
+  <!-- Row labels -->
+  <text x="90" y="55" text-anchor="end" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">HIGH</text>
+  <text x="90" y="95" text-anchor="end" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">MED</text>
+  <text x="90" y="135" text-anchor="end" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">LOW</text>
+
+  <!-- HIGH timeline -->
+  <!-- tick 0-1: idle -->
+  <rect x="100" y="38" width="75" height="26" rx="3" ry="3" fill="none" stroke="#5a6a7a" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="137" y="55" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">wait</text>
+  <!-- tick 1: idle -->
+  <!-- tick 2-4: BLOCKED (waiting for lock) -->
+  <rect x="250" y="38" width="225" height="26" rx="3" ry="3" fill="#fce4e4" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="362" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#c0392b">BLOCKED (lock wait)</text>
+  <!-- tick 5: RUN -->
+  <rect x="475" y="38" width="75" height="26" rx="3" ry="3" fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="512" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">RUN</text>
+
+  <!-- MED timeline -->
+  <!-- tick 0: idle -->
+  <rect x="100" y="78" width="75" height="26" rx="3" ry="3" fill="none" stroke="#5a6a7a" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- tick 1-3: RUN (preempts LOW) -->
+  <rect x="175" y="78" width="225" height="26" rx="3" ry="3" fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="287" y="95" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">RUN (preempts LOW)</text>
+  <!-- tick 4-5: idle -->
+  <rect x="400" y="78" width="150" height="26" rx="3" ry="3" fill="none" stroke="#5a6a7a" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- LOW timeline -->
+  <!-- tick 0: RUN (holds lock) -->
+  <rect x="100" y="118" width="75" height="26" rx="3" ry="3" fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="137" y="135" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">LOCK</text>
+  <!-- tick 1-3: preempted -->
+  <rect x="175" y="118" width="225" height="26" rx="3" ry="3" fill="#fce4e4" stroke="#c0392b" stroke-width="1"/>
+  <text x="287" y="135" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#c0392b">preempted</text>
+  <!-- tick 4: RUN, release lock -->
+  <rect x="400" y="118" width="75" height="26" rx="3" ry="3" fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="437" y="135" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">UNLOCK</text>
+  <!-- tick 5: idle -->
+  <rect x="475" y="118" width="75" height="26" rx="3" ry="3" fill="none" stroke="#5a6a7a" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>

@@ -65,6 +65,8 @@ GPA の 48 ビット:
 | 3-5 | Memory Type | キャッシュタイプ (0=UC, 6=WB) |
 | 12-51 | Physical Address | 次レベルテーブルまたはページの物理アドレス |
 
+![EPT アドレス変換](/images/v31/ept-translation.drawio.svg)
+
 ## ゲスト間のメモリ隔離
 
 ```

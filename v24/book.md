@@ -7,6 +7,8 @@ syscall/sysret は x86-64 で最も高速なカーネル呼び出し方法です
 
 v24 では MSR（Model Specific Register）を設定して syscall 命令のエントリポイントを登録し、Ring 0 から syscall を呼び出して動作を確認します。
 
+![syscall/sysret フロー](/images/v24/syscall-flow.drawio.svg)
+
 ## syscall/sysret の仕組み
 
 ### syscall 命令の動作

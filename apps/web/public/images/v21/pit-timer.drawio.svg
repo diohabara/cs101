@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 80" width="600" height="80"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- PIT -->
+  <rect x="5" y="15" width="110" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="60" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">PIT</text>
+  <text x="60" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">Ch0, 100Hz</text>
+
+  <!-- Arrow PIT to PIC -->
+  <line x1="115" y1="40" x2="155" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="135" y="30" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">IRQ0</text>
+
+  <!-- PIC -->
+  <rect x="163" y="15" width="130" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="228" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">PIC 8259A</text>
+  <text x="228" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">remap 0→32</text>
+
+  <!-- Arrow PIC to CPU -->
+  <line x1="293" y1="40" x2="333" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="313" y="30" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">INT 32</text>
+
+  <!-- CPU -->
+  <rect x="341" y="15" width="100" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="391" y="37" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">CPU</text>
+  <text x="391" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">IDT[32]</text>
+
+  <!-- Arrow CPU to handler -->
+  <line x1="441" y1="40" x2="471" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Timer handler -->
+  <rect x="479" y="15" width="115" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="536" y="37" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Timer Handler</text>
+  <text x="536" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">ticks++</text>
+</svg>

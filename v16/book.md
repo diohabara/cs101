@@ -54,6 +54,8 @@ tail = 6 → 6 % 4 = 2  （slot2 に書き込む ← ここで head に追いつ
 
 head も同様に剰余で循環します。これにより、ポインタをリセットする必要がなく、単調増加させるだけで正しく動作します。
 
+![リングバッファ: head/tail ポインタで循環する固定長キュー](/images/v16/ring-buffer.drawio.svg)
+
 ### ringbuf --- リングバッファの enqueue / dequeue
 
 | ステップ | 操作 | head | tail | count | 配列の中身 | 説明 |

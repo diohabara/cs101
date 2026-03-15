@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 120" width="600" height="120"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- User (Ring 3) left -->
+  <rect x="10" y="15" width="120" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="70" y="37" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">User (Ring 3)</text>
+  <text x="70" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">code</text>
+
+  <!-- Arrow: syscall -->
+  <line x1="130" y1="40" x2="195" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="162" y="32" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">syscall</text>
+
+  <!-- Kernel (Ring 0) -->
+  <rect x="203" y="15" width="190" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="298" y="37" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Kernel (Ring 0)</text>
+  <text x="298" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">LSTAR handler</text>
+
+  <!-- Arrow: sysret -->
+  <line x1="393" y1="40" x2="458" y2="40" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="425" y="32" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">sysret</text>
+
+  <!-- User (Ring 3) right -->
+  <rect x="466" y="15" width="120" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="526" y="37" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">User (Ring 3)</text>
+  <text x="526" y="53" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">continue</text>
+
+  <!-- Register annotations -->
+  <text x="70" y="85" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">RCX = return RIP</text>
+  <text x="70" y="97" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">R11 = RFLAGS</text>
+  <text x="526" y="85" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">restore RIP</text>
+  <text x="526" y="97" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">restore RFLAGS</text>
+</svg>

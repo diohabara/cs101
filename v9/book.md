@@ -19,6 +19,8 @@ C はこれらの操作に対して最小限の抽象化を加えた言語です
 | RFLAGS ビット操作 | `flags \|= FLAG` | フラグレジスタ → ビット演算 |
 | `syscall` | `write()`, `mmap()` | 直接 syscall → libc ラッパー |
 
+![アセンブリと C の対応関係](/images/v9/asm-c-mapping.drawio.svg)
+
 ## ポインタの間接参照
 
 C のポインタは、アセンブリの「レジスタにアドレスを入れて間接アクセス」と同じです。

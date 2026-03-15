@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 550 200" width="550" height="200"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Exception/IRQ source -->
+  <rect x="5" y="10" width="120" height="180" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="65" y="32" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Exception/IRQ</text>
+  <text x="65" y="58" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">#DE (0)</text>
+  <text x="65" y="80" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">#BP (3)</text>
+  <text x="65" y="102" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">#PF (14)</text>
+  <text x="65" y="124" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">IRQ0 (32)</text>
+  <text x="65" y="146" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">IRQ1 (33)</text>
+  <text x="65" y="168" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">...</text>
+  <text x="65" y="185" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">(256 vectors)</text>
+
+  <!-- Arrow to IDT -->
+  <line x1="125" y1="100" x2="175" y2="100" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="150" y="90" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">vector</text>
+
+  <!-- IDT -->
+  <rect x="183" y="30" width="140" height="140" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="253" y="52" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">IDT</text>
+  <text x="253" y="72" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">256 entries</text>
+  <text x="253" y="92" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">16 bytes each</text>
+  <line x1="193" y1="100" x2="313" y2="100" stroke="#5a6a7a" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <text x="253" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">IDT[vector]</text>
+  <text x="253" y="136" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">→ handler addr</text>
+  <text x="253" y="154" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">+ selector 0x08</text>
+
+  <!-- Arrow to handler -->
+  <line x1="323" y1="100" x2="373" y2="100" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="348" y="90" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">jump</text>
+
+  <!-- Handler -->
+  <rect x="381" y="10" width="160" height="180" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="461" y="32" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Handler</text>
+  <text x="461" y="60" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">exc_divide_error()</text>
+  <text x="461" y="82" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">exc_breakpoint()</text>
+  <text x="461" y="104" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">exc_page_fault()</text>
+  <text x="461" y="126" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">isr_timer()</text>
+  <text x="461" y="148" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">isr_keyboard()</text>
+  <text x="461" y="170" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">...</text>
+</svg>

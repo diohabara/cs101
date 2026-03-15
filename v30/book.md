@@ -115,6 +115,8 @@ vmresume は VMCS の launch 状態が "launched" のときに使います。vml
 
 {{code:src/boot.c}}
 
+![VM exit ディスパッチ](/images/v30/vmexit-dispatch.drawio.svg)
+
 ## VM exit ハンドリングの全体フロー
 
 ```

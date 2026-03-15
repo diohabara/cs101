@@ -79,6 +79,8 @@ VMXON 領域（4096 バイト）:
 
 {{code:src/boot.c}}
 
+![VMX モード遷移](/images/v27/vmx-modes.drawio.svg)
+
 ## VMX モードの遷移
 
 ```

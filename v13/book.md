@@ -97,6 +97,8 @@ tick 5: HIGH がロック取得、実行、完了
 HIGH の待ち時間: 3 tick (tick 2 → tick 5)
 ```
 
+![優先度逆転のタイムライン](/images/v13/priority-inversion.drawio.svg)
+
 ## Priority Inheritance Protocol
 
 Priority Inheritance は優先度逆転を防ぐ仕組みです。

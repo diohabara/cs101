@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 400 300" width="400" height="300"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- NEW label -->
+  <text x="40" y="85" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">new</text>
+
+  <!-- Arrow: new -> READY -->
+  <line x1="60" y1="80" x2="105" y2="60" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- READY box -->
+  <rect x="110" y="35" width="120" height="45" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="63" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">READY</text>
+
+  <!-- Arrow: READY -> RUNNING (dispatch) -->
+  <line x1="170" y1="80" x2="170" y2="110" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="185" y="100" font-family="sans-serif" font-size="10" fill="#888">dispatch</text>
+
+  <!-- RUNNING box -->
+  <rect x="110" y="115" width="120" height="45" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="143" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">RUNNING</text>
+
+  <!-- Arrow: RUNNING -> READY (preempt) -->
+  <line x1="110" y1="130" x2="95" y2="80" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="68" y="112" font-family="sans-serif" font-size="10" fill="#888">timeout</text>
+
+  <!-- Arrow: RUNNING -> BLOCKED (I/O request) -->
+  <line x1="230" y1="137" x2="275" y2="137" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="252" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">I/O</text>
+
+  <!-- BLOCKED box -->
+  <rect x="280" y="115" width="110" height="45" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="335" y="143" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333" font-weight="bold">BLOCKED</text>
+
+  <!-- Arrow: BLOCKED -> READY (I/O done) -->
+  <line x1="335" y1="115" x2="230" y2="65" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="300" y="80" font-family="sans-serif" font-size="10" fill="#888">I/O done</text>
+
+  <!-- Arrow: RUNNING -> TERMINATED (exit) -->
+  <line x1="170" y1="160" x2="170" y2="200" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="185" y="185" font-family="sans-serif" font-size="10" fill="#888">exit</text>
+
+  <!-- TERMINATED box -->
+  <rect x="110" y="205" width="120" height="45" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="170" y="233" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">TERMINATED</text>
+
+  <!-- Title -->
+  <text x="200" y="282" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">5 状態プロセスモデル</text>
+</svg>

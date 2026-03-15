@@ -55,6 +55,8 @@ UART（Universal Asynchronous Receiver/Transmitter）はシリアル通信デバ
 | +4 | MCR | モデム制御 |
 | +5 | LSR | ラインステータス（送信バッファが空かどうか） |
 
+![CPU → UART → Serial → Terminal の流れ](/images/v18/uart-io.drawio.svg)
+
 ### I/O ポートアクセス
 
 x86 にはメモリとは別に「I/O ポート空間」があります。`in` / `out` 命令で 0x0000-0xFFFF の 16ビットアドレス空間にアクセスします。

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 550 200" width="550" height="200"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- VM Exit box -->
+  <rect x="10" y="60" width="80" height="35" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="50" y="82" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">VM Exit</text>
+
+  <!-- Arrow to Read Reason -->
+  <line x1="90" y1="77" x2="120" y2="77" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Read Reason box -->
+  <rect x="128" y="60" width="100" height="35" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="178" y="82" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333" font-weight="bold">Read Reason</text>
+
+  <!-- Branch arrows -->
+  <line x1="228" y1="67" x2="280" y2="30" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <line x1="228" y1="72" x2="280" y2="60" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <line x1="228" y1="82" x2="280" y2="95" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <line x1="228" y1="87" x2="280" y2="130" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+  <!-- CPUID handler -->
+  <rect x="285" y="15" width="95" height="28" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="332" y="33" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">CPUID (10)</text>
+  <line x1="380" y1="29" x2="410" y2="29" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <text x="490" y="33" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">Filter / Fake response</text>
+
+  <!-- HLT handler -->
+  <rect x="285" y="48" width="95" height="28" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="332" y="66" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">HLT (12)</text>
+  <line x1="380" y1="62" x2="410" y2="62" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <text x="470" y="66" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">Halt guest</text>
+
+  <!-- I/O handler -->
+  <rect x="285" y="81" width="95" height="28" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="332" y="99" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">I/O (30)</text>
+  <line x1="380" y1="95" x2="410" y2="95" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <text x="478" y="99" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">Emulate UART</text>
+
+  <!-- Other handler -->
+  <rect x="285" y="114" width="95" height="28" rx="3" ry="3"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="332" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#333">Other</text>
+  <line x1="380" y1="128" x2="410" y2="128" stroke="#aaa" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+  <text x="468" y="132" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">Fatal error</text>
+
+  <!-- vmresume annotation -->
+  <rect x="130" y="160" width="290" height="28" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="275" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">After handling: vmresume -> Guest continues</text>
+</svg>

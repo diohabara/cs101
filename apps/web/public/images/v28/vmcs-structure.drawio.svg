@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 350 280" width="350" height="280"
+     style="background: transparent;">
+
+  <!-- Title -->
+  <text x="175" y="20" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">VMCS (4KB region)</text>
+
+  <!-- Guest State -->
+  <rect x="40" y="35" width="270" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="175" y="55" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">Guest State</text>
+  <text x="175" y="72" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">RIP, RSP, CR0, CR3...</text>
+
+  <!-- Host State -->
+  <rect x="40" y="93" width="270" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="175" y="113" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">Host State</text>
+  <text x="175" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">RIP, RSP, CR0, CR3...</text>
+
+  <!-- VM Execution Controls -->
+  <rect x="40" y="151" width="270" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="175" y="171" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">VM Execution Controls</text>
+  <text x="175" y="188" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">PIN, CPU, Entry, Exit</text>
+
+  <!-- Exit Information -->
+  <rect x="40" y="209" width="270" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="175" y="229" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">Exit Information</text>
+  <text x="175" y="246" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">Reason, Qualification</text>
+</svg>

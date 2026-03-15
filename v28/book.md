@@ -102,6 +102,8 @@ VM exit が発生したときに CPU が復元する状態です。
 
 {{code:src/boot.c}}
 
+![VMCS 構造](/images/v28/vmcs-structure.drawio.svg)
+
 ## VMCS のライフサイクル
 
 ```

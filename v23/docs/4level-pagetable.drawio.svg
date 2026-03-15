@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 200" width="600" height="200"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Virtual address bar -->
+  <text x="300" y="18" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Virtual Address (48 bits)</text>
+  <rect x="30" y="25" width="96" height="30" rx="2" ry="2"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="78" y="44" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">PML4 [9]</text>
+  <rect x="130" y="25" width="96" height="30" rx="2" ry="2"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="178" y="44" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">PDPT [9]</text>
+  <rect x="230" y="25" width="96" height="30" rx="2" ry="2"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="278" y="44" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">PD [9]</text>
+  <rect x="330" y="25" width="96" height="30" rx="2" ry="2"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="378" y="44" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">PT [9]</text>
+  <rect x="430" y="25" width="120" height="30" rx="2" ry="2"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="490" y="44" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">Offset [12]</text>
+
+  <!-- Down arrows from address fields -->
+  <line x1="78" y1="55" x2="78" y2="90" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="178" y1="55" x2="178" y2="90" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="278" y1="55" x2="278" y2="90" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="378" y1="55" x2="378" y2="90" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Page table boxes -->
+  <rect x="38" y="98" width="80" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="78" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">PML4</text>
+  <text x="78" y="138" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">(CR3)</text>
+
+  <rect x="138" y="98" width="80" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="178" y="123" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">PDPT</text>
+
+  <rect x="238" y="98" width="80" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="278" y="123" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">PD</text>
+
+  <rect x="338" y="98" width="80" height="50" rx="4" ry="4"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="378" y="123" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">PT</text>
+
+  <!-- Horizontal arrows between tables -->
+  <line x1="118" y1="123" x2="138" y2="123" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="218" y1="123" x2="238" y2="123" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="318" y1="123" x2="338" y2="123" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="418" y1="123" x2="438" y2="123" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Physical Page -->
+  <rect x="446" y="98" width="130" height="50" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="511" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333" font-weight="bold">Physical Page</text>
+  <text x="511" y="138" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">+ Offset</text>
+
+  <!-- Offset arrow from address bar -->
+  <line x1="490" y1="55" x2="490" y2="68" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="490" y1="68" x2="545" y2="68" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="545" y1="68" x2="545" y2="90" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+
+  <!-- Walk label -->
+  <text x="300" y="185" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">CR3 → PML4 → PDPT → PD → PT → Physical Page + Offset</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 450 300" width="450" height="300"
+     style="background: transparent;">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- Outer frame -->
+  <rect x="10" y="10" width="430" height="280" rx="6" ry="6"
+        fill="none" stroke="#5a6a7a" stroke-width="1.5"/>
+
+  <!-- VMX Root Mode (Host) -->
+  <rect x="25" y="25" width="400" height="110" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="225" y="45" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">VMX Root Mode (Host)</text>
+
+  <!-- Hypervisor Code -->
+  <rect x="55" y="55" width="340" height="60" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="225" y="75" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">Hypervisor Code</text>
+  <text x="225" y="93" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">VMXON -> VMLAUNCH -> handle VM exit</text>
+
+  <!-- Boundary line -->
+  <line x1="10" y1="145" x2="440" y2="145" stroke="#5a6a7a" stroke-width="1" stroke-dasharray="6,3"/>
+
+  <!-- Arrows: vmlaunch down, VM exit up -->
+  <line x1="185" y1="115" x2="185" y2="185" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="170" y="155" text-anchor="end" font-family="sans-serif" font-size="10" fill="#888">vmlaunch</text>
+
+  <line x1="265" y1="185" x2="265" y2="115" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="280" y="155" text-anchor="start" font-family="sans-serif" font-size="10" fill="#888">VM exit</text>
+
+  <!-- VMX Non-Root Mode (Guest) -->
+  <rect x="25" y="165" width="400" height="110" rx="4" ry="4"
+        fill="#e8f0fe" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="225" y="255" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">VMX Non-Root Mode (Guest)</text>
+
+  <!-- Guest Code -->
+  <rect x="55" y="190" width="340" height="50" rx="3" ry="3"
+        fill="#d2e3fc" stroke="#5a6a7a" stroke-width="1"/>
+  <text x="225" y="213" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333" font-weight="bold">Guest Code</text>
+  <text x="225" y="230" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">(runs until trap)</text>
+</svg>
