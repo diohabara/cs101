@@ -114,7 +114,6 @@ import v28VmcsH from "../../../v28/src/vmcs.h?raw";
 import v29Book from "../../../v29/book.md?raw";
 import v29Guest from "../../../v29/src/guest.c?raw";
 import v29GuestH from "../../../v29/src/guest.h?raw";
-import v29Vmlaunch from "../../../v29/src/vmlaunch.c?raw";
 import v30Book from "../../../v30/book.md?raw";
 import v30VmexitHandler from "../../../v30/src/vmexit_handler.c?raw";
 import v30VmexitH from "../../../v30/src/vmexit.h?raw";
@@ -485,7 +484,6 @@ const stageSources: StageSource[] = [
     files: {
       "src/guest.c": v29Guest,
       "src/guest.h": v29GuestH,
-      "src/vmlaunch.c": v29Vmlaunch,
     },
   },
   {
