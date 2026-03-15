@@ -230,6 +230,12 @@ function App() {
               h2: headingWithId("h2"),
               h3: headingWithId("h3"),
               h4: headingWithId("h4"),
+              img({ src, alt }) {
+                const resolved = src?.startsWith("/")
+                  ? `${import.meta.env.BASE_URL.replace(/\/$/, "")}${src}`
+                  : src;
+                return <img src={resolved} alt={alt ?? ""} />;
+              },
               a({ href, children }) {
                 if (href?.startsWith("#")) {
                   const { stageId, sectionSlug } = parseHash(href);

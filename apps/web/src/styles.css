@@ -21,6 +21,28 @@
   --code-type: #234fa3;
   --code-title: #6d36b0;
   --code-meta: #7a4958;
+  --ink: #1f2733;
+  --surface: rgba(255, 255, 255, 0.52);
+  --surface-strong: rgba(255, 255, 255, 0.62);
+  --surface-code: #f5efe3;
+  --surface-input: rgba(248, 244, 235, 0.72);
+  --surface-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12));
+  --subtle: rgba(24, 44, 76, 0.08);
+  --subtle-border: rgba(24, 44, 76, 0.08);
+  --subtle-line: rgba(24, 44, 76, 0.05);
+  --subtle-text: rgba(24, 44, 76, 0.52);
+  --subtle-strong: rgba(24, 44, 76, 0.28);
+  --highlight: rgba(15, 107, 98, 0.12);
+  --highlight-strong: rgba(15, 107, 98, 0.16);
+  --highlight-text: rgb(15, 107, 98);
+  --highlight-border: rgba(15, 107, 98, 0.28);
+  --highlight-bg: rgba(15, 107, 98, 0.1);
+  --rip-bg: rgba(24, 44, 76, 0.14);
+  --rip-text: rgb(24, 44, 76);
+  --warn-border: rgba(154, 77, 25, 0.22);
+  --warn-bg: rgba(154, 77, 25, 0.06);
+  --warn-text: rgb(110, 56, 18);
+  --error-bg: rgba(154, 77, 25, 0.08);
   font-family: "Iowan Old Style", "Palatino Linotype", serif;
 }
 
@@ -47,6 +69,28 @@
   --code-type: #7cb7ff;
   --code-title: #d39bff;
   --code-meta: #f4a6c1;
+  --ink: #ebf0f7;
+  --surface: rgba(30, 38, 50, 0.52);
+  --surface-strong: rgba(30, 38, 50, 0.62);
+  --surface-code: #141a24;
+  --surface-input: rgba(20, 26, 36, 0.72);
+  --surface-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  --subtle: rgba(190, 203, 220, 0.08);
+  --subtle-border: rgba(190, 203, 220, 0.1);
+  --subtle-line: rgba(190, 203, 220, 0.06);
+  --subtle-text: rgba(190, 203, 220, 0.52);
+  --subtle-strong: rgba(190, 203, 220, 0.28);
+  --highlight: rgba(125, 214, 194, 0.14);
+  --highlight-strong: rgba(125, 214, 194, 0.18);
+  --highlight-text: #7dd6c2;
+  --highlight-border: rgba(125, 214, 194, 0.32);
+  --highlight-bg: rgba(125, 214, 194, 0.12);
+  --rip-bg: rgba(190, 203, 220, 0.14);
+  --rip-text: #aab5c3;
+  --warn-border: rgba(255, 184, 107, 0.28);
+  --warn-bg: rgba(255, 184, 107, 0.08);
+  --warn-text: #ffb86b;
+  --error-bg: rgba(255, 184, 107, 0.1);
 }
 
 * {
@@ -655,7 +699,7 @@ button {
   border-radius: 22px;
   border: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12)),
+    var(--surface-overlay),
     var(--paper);
 }
 
@@ -670,7 +714,7 @@ button {
   align-items: center;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(24, 44, 76, 0.08);
+  background: var(--subtle);
   color: var(--muted);
   font-size: 0.85rem;
 }
@@ -754,8 +798,8 @@ button {
 }
 
 .asm-runner__branch.active {
-  border-color: rgba(24, 44, 76, 0.28);
-  background: rgba(24, 44, 76, 0.06);
+  border-color: var(--subtle-strong);
+  background: var(--subtle);
 }
 
 .asm-runner__branch span {
@@ -786,7 +830,7 @@ button {
   width: 100%;
   border-radius: 16px;
   border: 1px solid var(--line);
-  background: rgba(248, 244, 235, 0.72);
+  background: var(--surface-input);
   color: var(--ink);
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.93rem;
@@ -808,7 +852,7 @@ button {
   padding: 14px;
   border-radius: 18px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.52);
+  background: var(--surface);
 }
 
 .asm-runner__card-header {
@@ -832,8 +876,8 @@ button {
 .asm-runner__code {
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(24, 44, 76, 0.1);
-  background: #f5efe3;
+  border: 1px solid var(--subtle-border);
+  background: var(--surface-code);
 }
 
 .asm-runner__code-line {
@@ -843,7 +887,7 @@ button {
   align-items: center;
   min-height: 32px;
   padding: 0 12px;
-  border-top: 1px solid rgba(24, 44, 76, 0.05);
+  border-top: 1px solid var(--subtle-line);
 }
 
 .asm-runner__code-line:first-child {
@@ -851,19 +895,19 @@ button {
 }
 
 .asm-runner__code-line.active {
-  background: rgba(15, 107, 98, 0.12);
+  background: var(--highlight);
 }
 
 .asm-runner__code-line.executed {
-  background: rgba(15, 107, 98, 0.08);
+  background: var(--highlight-bg);
 }
 
 .asm-runner__code-line.rip {
-  background: rgba(24, 44, 76, 0.14);
+  background: var(--rip-bg);
 }
 
 .asm-runner__line-no {
-  color: rgba(24, 44, 76, 0.52);
+  color: var(--subtle-text);
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.82rem;
 }
@@ -893,13 +937,13 @@ button {
 }
 
 .asm-runner__executed-badge {
-  background: rgba(15, 107, 98, 0.12);
-  color: rgb(15, 107, 98);
+  background: var(--highlight);
+  color: var(--highlight-text);
 }
 
 .asm-runner__rip-badge {
-  background: rgba(15, 107, 98, 0.16);
-  color: rgb(24, 44, 76);
+  background: var(--highlight-strong);
+  color: var(--rip-text);
 }
 
 .asm-runner__diffs {
@@ -923,16 +967,16 @@ button {
   align-items: center;
   padding: 7px 8px;
   border-radius: 12px;
-  border: 1px solid rgba(24, 44, 76, 0.08);
-  background: rgba(24, 44, 76, 0.04);
+  border: 1px solid var(--subtle-border);
+  background: var(--subtle);
   min-width: 0;
   white-space: nowrap;
 }
 
 .asm-runner__flag.is-on {
-  border-color: rgba(15, 107, 98, 0.24);
-  background: rgba(15, 107, 98, 0.1);
-  color: rgb(15, 107, 98);
+  border-color: var(--highlight-border);
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
 }
 
 .asm-runner__diff {
@@ -941,7 +985,7 @@ button {
   align-items: center;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(24, 44, 76, 0.08);
+  background: var(--subtle);
 }
 
 .asm-runner__registers {
@@ -959,24 +1003,24 @@ button {
   gap: 4px;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(24, 44, 76, 0.08);
-  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--subtle-border);
+  background: var(--surface-strong);
 }
 
 .asm-runner__register--meta {
-  background: rgba(248, 244, 235, 0.72);
+  background: var(--surface-input);
 }
 
 .asm-runner__register.changed {
-  border-color: rgba(15, 107, 98, 0.28);
-  background: rgba(15, 107, 98, 0.1);
+  border-color: var(--highlight-border);
+  background: var(--highlight-bg);
 }
 
 .asm-runner__register.removed {
   opacity: 0.5;
   text-decoration: line-through;
-  border-color: rgba(154, 77, 25, 0.22);
-  background: rgba(154, 77, 25, 0.06);
+  border-color: var(--warn-border);
+  background: var(--warn-bg);
 }
 
 .asm-runner__register span {
@@ -1008,8 +1052,8 @@ button {
   margin: 0;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(248, 244, 235, 0.7);
-  border: 1px solid rgba(24, 44, 76, 0.08);
+  background: var(--surface-input);
+  border: 1px solid var(--subtle-border);
   min-height: 74px;
 }
 
@@ -1024,9 +1068,9 @@ button {
 }
 
 .asm-runner__side-effects li.changed {
-  border-left: 3px solid rgba(15, 107, 98, 0.5);
+  border-left: 3px solid var(--highlight-border);
   padding-left: 8px;
-  background: rgba(15, 107, 98, 0.08);
+  background: var(--highlight-bg);
   border-radius: 0 6px 6px 0;
 }
 
@@ -1035,13 +1079,13 @@ button {
   gap: 2px;
   padding: 8px 10px;
   border-radius: 12px;
-  border: 1px solid rgba(24, 44, 76, 0.08);
-  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--subtle-border);
+  background: var(--surface-strong);
 }
 
 .asm-runner__mem-effect.changed {
-  border-color: rgba(15, 107, 98, 0.28);
-  background: rgba(15, 107, 98, 0.1);
+  border-color: var(--highlight-border);
+  background: var(--highlight-bg);
 }
 
 .asm-runner__mem-badge {
@@ -1055,13 +1099,13 @@ button {
 }
 
 .asm-runner__mem-badge--write {
-  background: rgba(15, 107, 98, 0.14);
-  color: rgb(15, 107, 98);
+  background: var(--highlight);
+  color: var(--highlight-text);
 }
 
 .asm-runner__mem-badge--read {
-  background: rgba(24, 44, 76, 0.08);
-  color: rgba(24, 44, 76, 0.7);
+  background: var(--subtle);
+  color: var(--subtle-text);
 }
 
 .asm-runner__empty {
@@ -1073,9 +1117,9 @@ button {
 .asm-runner__error {
   padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(154, 77, 25, 0.22);
-  background: rgba(154, 77, 25, 0.08);
-  color: rgb(110, 56, 18);
+  border: 1px solid var(--warn-border);
+  background: var(--error-bg);
+  color: var(--warn-text);
 }
 
 @media (max-width: 1100px) {
