@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import type { StageQuiz } from "../quiz";
 
 type QuizCardProps = {
@@ -7,7 +7,7 @@ type QuizCardProps = {
 };
 
 type StoredQuizState = {
-  version: 1;
+  version: number;
   answers: Record<string, string[]>;
   submitted: boolean;
 };
@@ -17,7 +17,17 @@ type QuestionResult = {
   isCorrect: boolean;
 };
 
-const STORAGE_VERSION = 1;
+const STORAGE_VERSION = 2;
+
+function renderInlineCodeText(text: string) {
+  return text.split(/(`[^`]+`)/g).map((part, index) => {
+    if (part.startsWith("`") && part.endsWith("`") && part.length >= 2) {
+      return <code key={index}>{part.slice(1, -1)}</code>;
+    }
+
+    return <Fragment key={index}>{part}</Fragment>;
+  });
+}
 
 function storageKey(stageId: string) {
   return `cs101-quiz:${stageId}`;
@@ -170,7 +180,7 @@ export function QuizCard({ stageId, quiz }: QuizCardProps) {
         <div>
           <p className="quiz-card__eyebrow">Chapter Quiz</p>
           <h3 id={`quiz-title-${stageId}`}>{quiz.title}</h3>
-          <p>{quiz.intro}</p>
+          <p className="quiz-rich-text">{renderInlineCodeText(quiz.intro)}</p>
         </div>
         <div className="quiz-card__meta">
           <span>{answeredCount} / {quiz.questions.length} 問 回答済み</span>
@@ -191,7 +201,7 @@ export function QuizCard({ stageId, quiz }: QuizCardProps) {
             <fieldset key={question.id} className="quiz-question">
               <legend>
                 <span className="quiz-question__number">Q{questionIndex + 1}</span>
-                <span>{question.prompt}</span>
+                <span className="quiz-rich-text">{renderInlineCodeText(question.prompt)}</span>
               </legend>
               <p className="quiz-question__type">
                 {question.type === "single" ? "単一選択" : "複数選択"}
@@ -216,7 +226,7 @@ export function QuizCard({ stageId, quiz }: QuizCardProps) {
                         }}
                         type={question.type === "single" ? "radio" : "checkbox"}
                       />
-                      <span>{option.label}</span>
+                      <span className="quiz-rich-text">{renderInlineCodeText(option.label)}</span>
                     </label>
                   );
                 })}
@@ -231,7 +241,7 @@ export function QuizCard({ stageId, quiz }: QuizCardProps) {
                   }
                 >
                   <strong>{questionResult.isCorrect ? "正解" : "要復習"}</strong>
-                  <p>{question.explanation}</p>
+                  <p className="quiz-rich-text">{renderInlineCodeText(question.explanation)}</p>
                 </div>
               ) : null}
             </fieldset>
@@ -251,7 +261,7 @@ export function QuizCard({ stageId, quiz }: QuizCardProps) {
       {submitted ? (
         <div className={`quiz-summary quiz-summary--${score.status}`}>
           <h4>結果</h4>
-          <p>{quiz.resultMessages[score.status]}</p>
+          <p className="quiz-rich-text">{renderInlineCodeText(quiz.resultMessages[score.status])}</p>
         </div>
       ) : null}
     </section>

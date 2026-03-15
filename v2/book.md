@@ -36,14 +36,90 @@
 cmp rax, 42
 ```
 
-この命令は内部で `rax - 42` を計算します。結果が 0 なら ZF（Zero Flag）が 1 になり、結果が負なら SF（Sign Flag）が 1 になります。しかし `rax` の値は変わりません。
+この命令は内部で `rax - 42` を計算します。しかし結果はレジスタに書き戻さず、`rax` の値は変わりません。代わりに、結果の性質を flags に記録します。
+
+### 2 の補数を先に押さえる
+
+x86 の signed 整数は、通常 **2 の補数** で表現されます。固定幅のビット列を signed として読むと、先頭ビットが 1 の値は負数になります。
+
+4bit で見るとこうなります。
+
+| ビット列 | unsigned | signed |
+|---------|----------|--------|
+| `0111` | `7` | `7` |
+| `1111` | `15` | `-1` |
+| `1000` | `8` | `-8` |
+
+負数は「ビット反転して 1 を足す」で作れます。たとえば 4bit で `5` は `0101`、その負数 `-5` は `1011` です。
+
+```text
+  0101   ; 5
+~ 0101   ; ビット反転
+  1010
++    1
+------
+  1011   ; -5
+```
+
+この仕組みのおかげで、CPU は signed でも unsigned でも同じ加算器・減算器を使えます。違うのは「あとでそのビット列をどう読むか」だけです。
+
+### 同じビット列でも見方で意味が変わる
+
+レジスタは「ただの 64bit の箱」です。`signed` や `unsigned` という型が保存されているわけではありません。
+
+たとえば `rax` に `0xffffffffffffffff` が入っているとします。
+
+| 見方 | 値の意味 |
+|------|----------|
+| signed | `-1` |
+| unsigned | `18446744073709551615` |
+
+同じビット列でも、signed と unsigned で大小関係が変わることがあります。この違いが `SF` / `OF` と `CF` の使い分けにつながります。
+
+| フラグ | 名前 | 何を表すか |
+|------|------|------------|
+| `ZF` | Zero Flag | 結果が 0 なら 1 |
+| `SF` | Sign Flag | 結果を signed と見たとき負に見えるなら 1 |
+| `CF` | Carry Flag | 減算で borrow が必要、つまり unsigned として `左 < 右` なら 1 |
+| `OF` | Overflow Flag | signed として結果が表現範囲をはみ出したら 1 |
+
+`cmp rax, 42` の具体例を見ると違いが見えます。
+
+| `rax` の値 | 内部計算 | 主なフラグ | どう読むか |
+|-----------|----------|-----------|-----------|
+| `42` | `42 - 42 = 0` | ZF=1 | 等しいので `jz` / `je` が成立 |
+| `5` | `5 - 42 = -37` | SF=1, CF=1 | signed でも unsigned でも 5 は 42 より小さい |
+| `100` | `100 - 42 = 58` | ZF=0, SF=0, CF=0 | signed でも unsigned でも 100 は 42 より大きい |
+
+`CF` が分かりにくいときは、「unsigned の筆算で引けるか」を考えるとよいです。`5 - 42` は borrow が必要なので CF=1、`100 - 42` は borrow 不要なので CF=0 です。
+
+同じ `cmp rax, 42` でも、`rax=0xffffffffffffffff` のときは見方によって結論が変わります。
+
+| 見方 | 比較結果 | 使うジャンプ |
+|------|----------|-------------|
+| signed | `-1 < 42` | `jl` |
+| unsigned | `18446744073709551615 > 42` | `ja` |
+
+つまり `cmp` は「比較に使う材料を flags に入れる命令」で、signed 比較にするか unsigned 比較にするかは後続のジャンプ命令が決めます。
+
+### OF が必要になる例
+
+OF は signed 比較で重要です。たとえば 8bit 整数として `127 - (-1)` を考えると、数学上の結果は `128` ですが、8bit signed の範囲 `-128` から `127` には入りません。
+
+| 項目 | 値 |
+|------|----|
+| 数学上の結果 | `128` |
+| 8bit signed で表せる範囲 | `-128` から `127` |
+| 実際の 8bit 結果のビット列 | `10000000` |
+
+`10000000` は 8bit signed として読むと `-128` です。つまり SF=1 だけを見ると「負の結果だ」と読めてしまいますが、実際には signed の範囲をはみ出しています。その異常を知らせるのが OF=1 です。だから signed 比較では SF だけでなく OF も一緒に見ます。
 
 つまり `cmp` は `sub` と同じ計算をしながら、レジスタへの書き戻しだけを省略した命令です。
 
 ```mermaid
 flowchart LR
     CMP[cmp rax, 42] --> CALC["rax - 42 を計算"]
-    CALC --> FLAGS["ZF, SF, CF を更新"]
+    CALC --> FLAGS["ZF, SF, CF, OF を更新"]
     CALC -.->|結果は捨てる| DISCARD["rax は変わらない"]
 ```
 
@@ -57,7 +133,13 @@ flowchart LR
 | `jnz` / `jne` | Jump if Not Zero / Not Equal | ZF=0 |
 | `jg` / `jnle` | Jump if Greater | ZF=0 かつ SF=OF |
 | `jl` / `jnge` | Jump if Less | SF!=OF |
+| `ja` / `jnbe` | Jump if Above | CF=0 かつ ZF=0 |
+| `jb` / `jnae` | Jump if Below | CF=1 |
 | `jmp` | 無条件ジャンプ | 常にジャンプ |
+
+`jz` と `je` はどちらも ZF=1 を見る同じ条件ジャンプです。違うのは名前だけで、`jz` は「結果が 0 なら跳ぶ」、`je` は「等しければ跳ぶ」と文脈に合わせて読みやすくした別名です。`jnz` と `jne` も同様です。
+
+`ZF` は「等しいか」を見る最も基本のフラグです。`jg` や `jl` は signed 比較なので `SF` と `OF` を組み合わせて判断します。一方で `ja` や `jb` は unsigned 比較なので `CF` を使います。
 
 `jmp` はフラグを見ずに常にジャンプします。条件分岐の後に「そうでない場合」の処理を飛ばすために使います。
 
@@ -121,8 +203,8 @@ GDB で `stepi` を繰り返しながら `info registers rip` を見ると、RIP
 |----------|------|------|
 | 1 | `mov rax, 15` | 順方向 |
 | 2 | `mov rbx, 27` | 順方向 |
-| 3 | `cmp rax, rbx` | 15 < 27 なので SF=1 |
-| 4 | `jg .rax_greater` | SF!=OF なので**フォールスルー** |
+| 3 | `cmp rax, rbx` | 15 < 27 なので `rax - rbx` は負、SF=1 かつ OF=0 |
+| 4 | `jg .rax_greater` | ZF=0 だが SF!=OF なので**フォールスルー** |
 | 5 | `mov rdi, rbx` | rbx(27) を exit code に |
 | 6 | `jmp .exit` | **前方ジャンプ**（.rax_greater を飛ばす） |
 
@@ -142,3 +224,4 @@ GDB で `stepi` を繰り返しながら `info registers rip` を見ると、RIP
 - [Intel SDM Vol.2 Jcc](https://www.felixcloutier.com/x86/jcc) — 条件ジャンプの一覧: JZ(ZF=1), JNZ(ZF=0), JG(ZF=0∧SF=OF), JL(SF≠OF)
 - [Intel SDM Vol.2 JMP](https://www.felixcloutier.com/x86/jmp) — 無条件ジャンプ
 - [NASM Manual §3.9 "Local Labels"](https://www.nasm.us/doc/nasmdoc3.html) — ドット接頭辞によるローカルラベルの仕組み
+- CMU 15-213 Lecture 02 "Bits, Bytes, and Integers" — 2 の補数、signed/unsigned の見え方、overflow の説明

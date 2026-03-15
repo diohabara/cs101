@@ -1,4 +1,6 @@
 import { isValidElement, useEffect, useMemo, useState } from "react";
+import x86asm from "highlight.js/lib/languages/x86asm";
+import { common } from "lowlight";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkBreaks from "remark-breaks";
@@ -9,6 +11,16 @@ import { QuizCard } from "./components/QuizCard";
 import { TopicBadge } from "./components/TopicBadge";
 
 type Theme = "light" | "dark";
+
+const rehypeHighlightOptions = {
+  languages: {
+    ...common,
+    x86asm,
+  },
+  aliases: {
+    x86asm: ["asm", "nasm"],
+  },
+} as const;
 
 function initialTheme(): Theme {
   if (typeof window === "undefined") {
@@ -85,7 +97,7 @@ function App() {
         <article className="markdown-body">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkBreaks]}
-            rehypePlugins={[rehypeHighlight]}
+            rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}
             components={{
               pre({ children }) {
                 if (

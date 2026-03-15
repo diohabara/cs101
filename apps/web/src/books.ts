@@ -92,7 +92,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v2",
-    title: "mov",
+    title: "cmp and branch",
     topic: "cpu",
     book: v2Book,
     files: {
@@ -103,7 +103,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v3",
-    title: "add and flags",
+    title: "memory and load/store",
     topic: "cpu",
     book: v3Book,
     files: {
@@ -114,7 +114,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v4",
-    title: "sub and sign",
+    title: "stack and call/ret",
     topic: "cpu",
     book: v4Book,
     files: {
@@ -125,7 +125,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v5",
-    title: "cmp and branch",
+    title: "syscalls and output",
     topic: "cpu",
     book: v5Book,
     files: {
@@ -136,7 +136,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v6",
-    title: "memory and load/store",
+    title: "fd and I/O",
     topic: "cpu",
     book: v6Book,
     files: {
@@ -147,7 +147,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v7",
-    title: "stack and call/ret",
+    title: "process model",
     topic: "cpu",
     book: v7Book,
     files: {
@@ -158,7 +158,7 @@ const stageSources: StageSource[] = [
   },
   {
     id: "v8",
-    title: "paging and virtual memory",
+    title: "virtual memory",
     topic: "cpu",
     book: v8Book,
     files: {

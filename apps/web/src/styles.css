@@ -489,6 +489,16 @@ button {
   font-size: 0.92rem;
 }
 
+.quiz-rich-text code {
+  display: inline-block;
+  padding: 0.08em 0.42em;
+  border-radius: 8px;
+  background: rgba(24, 44, 76, 0.08);
+  color: var(--ink);
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.92em;
+}
+
 .quiz-question__options {
   display: grid;
   gap: 10px;
